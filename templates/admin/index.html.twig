@@ -1,0 +1,92 @@
+{% extends 'dashbase.twig' %}
+
+{% block title %}Painel do admin{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Painel do Admin</h1>
+
+               <div class="mt-5 dados">
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                    <a href="{{path('app_admin_agencias')}}">
+                    <div class="card card-statisticas">
+                        <div class="card-body">
+                            <p class="text-card text-dark text-start">Agencias</p>
+                            <span class="">{{agencias}}</span>
+                        </div>
+                    </div>
+
+                </a>
+                    </div>
+
+                    <div class="col-md-4">
+                        
+                    <div class="card card-statisticas">
+                        <div class="card-body">
+                            <p class="text-card text-dark text-start">Usuarios</p>
+                            <span class="">{{users}}</span>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="col-md-4">
+                    <div class="card card-statisticas">
+                        <div class="card-body">
+                            <p class="text-card text-dark text-start">Clientes</p>
+                            <span class="">20</span>
+                        </div>
+                    </div>
+                    </div>
+
+                </div>
+                <div class="row mt-5">
+
+                    
+                    <div class="col-md-4">
+                    <div class="card card-statisticas">
+                        <div class="card-body">
+                            <p class="text-card text-dark text-start">Contas</p>
+                            <span class="">{{contas}}</span>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="col-md-4">
+                    <div class="card card-statisticas">
+                        <div class="card-body">
+                            <p class="text-card text-dark text-start">Transações</p>
+                            <span class="">20</span>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <a href="{{path('app_admin_gerentes')}}">
+
+                        <div class="card card-statisticas">
+                            <div class="card-body">
+                                <p class="text-card text-dark text-start">Gerentes</p>
+                                <span class="">{{gerentes}}</span>
+                            </div>
+                        </div>
+                        </a>
+                        </div>
+
+                
+                
+                </div>
+               
+
+               </div>
+                
+            </div>
+        </div>
+    </div>
+
+    
+
+{% endblock %}

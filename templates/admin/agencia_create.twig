@@ -1,0 +1,124 @@
+{% extends 'dashbase.twig' %}
+
+{% block title %}Painel do admin{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h3 class="text-light text-start mt-5">Criar Agencia</h3>
+{{ form_start(agenciaForm) }}
+
+    
+    <div class="row">
+
+        <div class="col-md-6">
+
+        <div class="form-group">
+            {{ form_label(agenciaForm.codigo, 'Codigo', {'label_attr': {'class': 'form-label text-light'}}) }}
+            {{ form_widget(agenciaForm.codigo, {'attr': {'class': 'form-control'}})}}
+            {{ form_errors(agenciaForm.codigo) }}
+        </div>
+
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="form-group">
+            {{ form_label(agenciaForm.gerente, 'Selecione o Gerente', {'label_attr': {'class': 'form-label text-light'}}) }}
+            {{ form_widget(agenciaForm.gerente, {'attr': {'class': 'form-control'}})}}
+            {{ form_errors(agenciaForm.gerente) }}
+        </div>
+    </div>
+
+    </div>
+
+    <h5 class="text-light mt-3 mb-3">Endereço</h5>
+
+    <div class="row">
+
+        <div class="col-md-4">
+        <div class="form-group">
+            {{ form_label(agenciaForm.cep, 'Cep', {'label_attr': {'class': 'form-label text-light'}}) }}
+            {{ form_widget(agenciaForm.cep, {'attr': {'class': 'form-control'}})}}
+            {{ form_errors(agenciaForm.cep) }}
+        </div>   
+    </div>
+
+    <div class="col-md-4">
+    <div class="form-group">
+        {{ form_label(agenciaForm.estado, 'Estado', {'label_attr': {'class': 'form-label text-light'}}) }}
+        {{ form_widget(agenciaForm.estado, {'attr': {'class': 'form-control'}})}}
+        {{ form_errors(agenciaForm.estado) }}
+    </div>
+</div>
+
+<div class="col-md-4">
+        <div class="form-group">
+            {{ form_label(agenciaForm.cidade, 'Cidade', {'label_attr': {'class': 'form-label text-light'}}) }}
+            {{ form_widget(agenciaForm.cidade, {'attr': {'class': 'form-control'}})}}
+            {{ form_errors(agenciaForm.cidade) }}
+        </div>
+    </div>
+
+    </div>
+        
+
+    
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+        <div class="form-group">
+            {{ form_label(agenciaForm.bairro, 'Bairro', {'label_attr': {'class': 'form-label text-light'}}) }}
+            {{ form_widget(agenciaForm.bairro, {'attr': {'class': 'form-control'}})}}
+            {{ form_errors(agenciaForm.bairro) }}
+        </div>
+        </div>
+
+        <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(agenciaForm.rua, 'Rua', {'label_attr': {'class': 'form-label text-light'}}) }}
+            {{ form_widget(agenciaForm.rua, {'attr': {'class': 'form-control'}})}}
+            {{ form_errors(agenciaForm.rua) }}
+        </div>
+        </div>     
+    
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(agenciaForm.numero, 'Numero', {'label_attr': {'class': 'form-label text-light'}}) }}
+            {{ form_widget(agenciaForm.numero, {'attr': {'class': 'form-control'}})}}
+            {{ form_errors(agenciaForm.numero) }}
+        </div>
+        </div>
+        
+        <div class="col-md-6">
+        <div class="form-group">
+            {{ form_label(agenciaForm.telefone, 'Telefone', {'label_attr': {'class': 'form-label text-light'}}) }}
+            {{ form_widget(agenciaForm.telefone, {'attr': {'class': 'form-control'}})}}
+            {{ form_errors(agenciaForm.telefone) }}
+
+
+         </div>
+        </div>
+
+
+    </div>
+    
+
+   
+
+    <button type="submit" class="btn btn-primary register-btn mt-3">Criar</button>
+   
+
+
+
+    {{ form_end(agenciaForm) }}
+  </div>
+
+{% endblock %}

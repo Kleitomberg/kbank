@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Abrir Conta!{% endblock %}
+
+
+{% block stylesheets %}
+
+<link rel="stylesheet" href="/assets/css/login.css">
+
+{% endblock %}
+
+
+{% block body %}
+{% for flash_error in app.flashes('verify_email_error') %}
+<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+{% endfor %}
+
+
+
+
+<div class="login">
+    <h3 class="text-center">Abrir Conta</h3>
+
+    {{ form_start(registrationForm) }}
+
+
+    <div class="form-group">
+        {{ form_label(registrationForm.cpf, 'Cpf', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(registrationForm.cpf, {'attr': {'class': 'form-control'}})}}
+        {{ form_errors(registrationForm.cpf) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(registrationForm.nome, 'Nome Completo', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(registrationForm.nome, {'attr': {'class': 'form-control'}})}}
+        {{ form_errors(registrationForm.nome) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(registrationForm.celular, 'Celular', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(registrationForm.celular, {'attr': {'class': 'form-control'}})}}
+        {{ form_errors(registrationForm.celular) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}})}}
+        {{ form_errors(registrationForm.email) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(registrationForm.plainPassword, 'Senha pra entrar na conta', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}})}}
+        {{ form_errors(registrationForm.plainPassword) }}
+    </div>
+
+    <div class="form-group mt-3 mb-3">
+
+        {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'h-4 w-4 rounded border-gray border mr-2'}}) }}
+        {{ form_label(registrationForm.agreeTerms, 'Concordo com os termos', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_errors(registrationForm.agreeTerms) }}
+
+    </div>
+
+    <div class="row">
+
+    <div class="col-md-6">
+    <div class="form-group">
+        {{ form_label(registrationForm.conta.agencia, 'Agencia', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(registrationForm.conta.agencia, {'attr': {'class': 'h-4 w-4 rounded border-gray border mr-2'}}) }}
+        {{ form_errors(registrationForm.conta.agencia) }}
+    </div>
+</div>
+
+    <div class="col-md-6">
+        {{ form_label(registrationForm.conta.tipo, 'Tipo de conta', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(registrationForm.conta.tipo, {'attr': {'class': 'h-4 w-4 rounded border-gray border mr-2'}}) }}
+        {{ form_errors(registrationForm.conta.tipo) }}
+
+    </div>
+
+</div>
+    
+
+    <button type="submit" class="btn btn-primary register-btn">Criar</button>
+
+    <div class="mt-3">
+
+    <p class="text-center "><a class="text-decoration-none" href="{{path('app_login')}}"> Já sou cliente> </a></p>
+
+    </div>
+
+
+    {{ form_end(registrationForm) }}
+</div>
+{% endblock %}

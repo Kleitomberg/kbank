@@ -1,0 +1,66 @@
+{% extends 'dashbase.twig' %}
+
+{% block title %}Painel do admin{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Admin Dashboard</h1>
+
+               <div class="d-flex justify-content-between align-items-center mt-5 ">
+                <h3 class="text-light mb-3">Usuarios</h3>
+                
+
+               
+
+               </div>
+                <table class="table text-light">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Fullname</th>
+                            <th>Perfil</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.nome }}</td>
+                                <td>
+                                    
+                                        {% if 'ROLE_ADMIN' in user.roles %}
+                                            Administrador                                       
+                                                                              
+                                        {% endif %}
+
+                                        {% if 'ROLE_CLIENTE' in user.roles %}
+                                            Cliente
+                                        
+                                                                              
+                                        {% endif %}
+                                        {% if 'ROLE_GERENTE' in user.roles %}
+                                            Gerente
+                                        
+                                                                              
+                                        {% endif %}
+
+                                    
+
+
+                                </td>
+                                <td>
+                                    <a href="">edit</a>
+                                    <a href="">delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+            </div>
+        </div>
+    </div>
+
+    
+
+{% endblock %}

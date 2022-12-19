@@ -1,0 +1,140 @@
+@font-face{
+    font-family: 'Dax Bold';
+    src: url('../fonts/Dax Bold.ttf') format('truetype')
+}
+
+@font-face{
+    font-family: 'Dax Medium';
+    src: url('../fonts/Dax Medium.ttf') format('truetype')
+}
+
+@font-face{
+    font-family: 'Dax Light';
+    src: url('../fonts/Dax Light.ttf') format('truetype')
+}
+
+:root{
+    --primary-color: #0A4ED1;
+    --tertiary-color: #000;
+    --bg-color: #0D1118;
+}
+
+*{
+    
+    margin: 0;
+    padding: 0;
+    text-decoration: none !important;
+    list-style: none;
+}
+
+body{
+    background-color: var(--bg-color);
+    background-size:norepeat;
+    background-position: center;
+    height: 100vh;
+
+}
+
+h1{
+    font-family: 'Dax Bold';
+    font-size: 50px;
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
+}
+
+p{
+    font-family: 'Dax Light';
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    
+}
+.lending.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo3{
+    width: 15vw;
+    text-align: start;
+    height: auto;
+    
+    display: block;
+    margin-top: 20px;
+    filter: drop-shadow(0px 4px 4px var(--primary-color));
+    
+}
+
+.opencount{
+    font-family: 'Dax Bold';
+   border-radius: 5px;
+   margin-bottom: 10px;
+    background-color: linear-gradient(166.72deg, #0A4ED1 9.55%, rgba(63, 150, 220, 0.97901) 60.74%, rgba(137, 250, 236, 0.95) 131.49%);
+}
+
+.opencount:hover{
+    background-color: var(--primary-color);
+    color: #fff;
+}
+img.art-bank-online{
+    width: 35vw;
+    height: auto;
+    margin-top: 30px;
+    
+}
+sapn.fs-4{
+    font-family: 'Dax Bold';
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+div.login, div.form-agencia{
+    
+    border-radius: 10px;
+    padding: 20px;
+    margin: auto;
+    width: 400px;
+    margin-top: 100px;
+
+}
+
+.form-login button, .register-btn, div.form-agencia button{
+    background-color: #0A4ED1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    margin-top: 20px;
+
+}
+
+label{
+    
+    font-size: 14px;
+    color: #fff !important;
+    
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+div.form-gerente{
+    
+}
+
+footer p{
+    font-family: 'Dax Light';
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+}

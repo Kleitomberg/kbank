@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kbank!{% endblock %}
+
+{% block body %}
+
+<header class="text-end p-3">
+
+    
+
+    {% if is_granted('ROLE_ADMIN') %}
+    <a class="btn-painel btn btn-primary" href="{{path('app_admin')}}">Painel do Admin</a>
+
+    {% endif %}
+
+    {% if is_granted('ROLE_GERENTE') and not is_granted('ROLE_ADMIN') %}
+    <a class="btn-painel btn btn-primary" href="">Painel do Gerente</a>
+    {% endif %}
+
+    {% if is_granted('ROLE_CLIENT') and not is_granted('ROLE_ADMIN') %}
+    <a class="btn-painel btn btn-primary" href="{{path('app_cliente', {id: app.user.id})}}">Area do cliente</a>
+    {% endif %}
+
+    <a href="" class="btn btn-primary">Fazer um deposito</a>
+
+    {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+    <a href="{{path('app_login')}}">Login</a>
+    {% endif %}
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <a class="btn-painel text-light ms-3" href="{{path('app_logout')}}">Sair </a>
+    {% endif %}
+
+    
+
+
+
+</header>
+
+<div class="Index-container container">
+
+    <div class="lending row">
+
+    <div class="col">
+
+    <div class=" div-logo text-start">
+        <img class="img-fluid logo3 text-start" src="/assets/images/logo3.png" alt="Kbank">
+    </div>
+    
+        <p class="text-start">O Kbank é um banco feito para você. Estamos aqui para ajudá-lo com suas finanças e
+            facilitar sua vida.
+        </p>
+
+            <div class="Index-content-button">
+                <a href="/register" class="btn btn-primary btn-lg btn-block opencount">Abra sua conta</a>
+    
+            </div>
+    </div> 
+
+    <div class="col">
+
+        <img class="img-fluid art-bank-online" src="/assets/images/undraw_online_banking_re_kwqh (1).svg" alt="">
+    </div>
+    </div>
+
+    <div class="agencias mb-3">
+        <h3 class="text-light">Nossas agencias estão localizadas em:</h3>
+
+        <div class="row mt-3 mb-3">
+            {% for agencia in agencias %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <h5 class="card-title">Agencia {{agencia.codigo}}</h5>
+                        <p class="text-dark text-start">{{agencia.cidade}}/{{agencia.estado}}</p>
+                    </div>
+                    <div class="card-body text-start">                       
+                       
+                        <p class="text-dark text-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                              </svg>
+                             {{agencia.telefone}}
+                            </p>
+
+
+                             <p class="text-start text-dark">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-gear" viewBox="0 0 16 16">
+                                    <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Zm9.886-3.54c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382l.045-.148ZM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z"/>
+                                  </svg>
+
+                                  Gerente: {{agencia.gerente.nome}}
+                             </p>
+
+                             <p class="text-dark text-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                                  </svg>
+
+                                    Rua: {{agencia.rua}}, n° {{agencia.numero}}, {{agencia.bairro}}
+                             </p>
+                             
+
+                        
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <p class="text-center">© 2022 Kb Pagamentos S.A - Instituição de Pagamento.</p>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+{% endblock %}

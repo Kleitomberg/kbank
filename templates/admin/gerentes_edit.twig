@@ -1,0 +1,51 @@
+{% extends 'dashbase.twig' %}
+
+{% block title %}Painel do admin{% endblock %}
+{% block body %}
+    <div class="container form-gerente mt-5">
+    <form action="" method="post">
+            <h3 class="text-light">Atualizar Gerente</h3>
+
+            <div class="row">
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="cpf">CPF</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" value={{gerente.user.cpf}}>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="nome">Nome do Gerente</label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" value={{gerente.user.nome}}>
+            </div>
+        </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+            <div class="form-group">
+                <label for="telefone">Telefone</label>
+                <input type="text" class="form-control" id="telefone" name="celular" placeholder="Telefone" value={{gerente.user.celular}}>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" value={{gerente.user.email}}>
+            </div>
+        </div>
+
+        </div>
+
+                    
+
+            <button type="submit" class="btn btn-primary mt-3">Atualizar</button>
+
+    </form>
+       
+    </div>
+
+    
+
+{% endblock %}
