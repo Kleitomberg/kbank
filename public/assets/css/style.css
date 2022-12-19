@@ -17,7 +17,9 @@
     --primary-color: #0A4ED1;
     --tertiary-color: #000;
     --bg-color: #0D1118;
+
 }
+
 
 *{
     
@@ -137,4 +139,12 @@ footer p{
     margin-top: 20px;
     margin-bottom: 20px;
     display: block;
+}
+
+
+.modal{
+    --bs-modal-bg:#0A4ED1 ;
+    color: #fff !important;
+    --bs-modal-width: 340px;
+   
 }

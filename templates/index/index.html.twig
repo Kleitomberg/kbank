@@ -21,7 +21,7 @@
     <a class="btn-painel btn btn-primary" href="{{path('app_cliente', {id: app.user.id})}}">Area do cliente</a>
     {% endif %}
 
-    <a href="" class="btn btn-primary">Fazer um deposito</a>
+    <a href="" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Fazer um deposito</a>
 
     {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
     <a href="{{path('app_login')}}">Login</a>
@@ -111,6 +111,45 @@
 
     </div>
 </div>
+
+<!--MODAL-->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 text-light" id="exampleModalLabel">Caixa Virtual</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <form action="{{path('app_conta_deposito')}}" method="post">
+
+               
+                <div class="mb-3 form-group">
+                    <label for="recipient-name" class="col-form-label">Agência:</label>
+                    <input type="text" name="agencia" class="form-control" id="agencia">
+                </div>
+                <div class="mb-3 form-group">
+                    <label for="recipient-name" class="col-form-label">Conta:</label>
+                    <input type="text" class="form-control" name="conta" id="conta">
+                </div>
+                <div class="mb-3 form-group ">
+                    <label for="recipient-name" class="col-form-label">Valor:</label>
+                    <input type="text" class="form-control" name="valor" id="valor">
+                </div>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-success">Depositar</button>
+            </form>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
 {% endblock %}
 
 {% block footer %}

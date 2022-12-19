@@ -29,6 +29,11 @@ class Transacao
     #[ORM\ManyToOne(inversedBy: 'transacaos')]
     private ?Conta $remetente = null;
 
+    public function __construct()
+    {
+        $this->data = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
