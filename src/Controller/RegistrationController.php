@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Conta;
 use App\Form\ContaFormType;
 use App\Form\RegistrationFormType;
+use App\Repository\ContaRepository;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -28,7 +29,7 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, ContaRepository $contaRepository): Response
     {
         $user_loged = $this->getUser();
 
@@ -54,7 +55,12 @@ class RegistrationController extends AbstractController
             );
             $user->setRoles(['ROLE_CLIENT']);
 
+            
+
             $entityManager->persist($user);
+            
+
+
             $agencia = $form->get('conta')->getData();
            # dd($agencia);
             $conta = new Conta();
@@ -63,7 +69,18 @@ class RegistrationController extends AbstractController
             $conta->setNumero(rand(100000, 999999));
             $conta->setAgencia($agencia->getAgencia());
             $conta->setTipo($agencia->getTipo());
-            $conta->setActive(false);
+
+
+            $contaExistente = $contaRepository->findOneBy(['usuario' => $user->getId(),'active' => true]);
+
+            if ($contaExistente){
+                $conta->setActive(true);
+                
+            }else{
+                $conta->setActive(false);
+            }
+            
+
             $entityManager->persist($conta);
            
 

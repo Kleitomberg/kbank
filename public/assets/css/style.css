@@ -13,6 +13,11 @@
     src: url('../fonts/Dax Light.ttf') format('truetype')
 }
 
+@font-face{
+    font-family: 'Dax';
+    src: url('../fonts/Dax.ttf') format('truetype')
+}
+
 :root{
     --primary-color: #0A4ED1;
     --tertiary-color: #000;
@@ -45,7 +50,7 @@ h1{
     margin-top: 20px;
 }
 
-p{
+p.index{
     font-family: 'Dax Light';
     font-size: 20px;
     color: #fff;
@@ -69,11 +74,17 @@ p{
     
 }
 
+.btn-primary{
+    font-family: 'Dax';
+    background: linear-gradient(166.72deg, #0A4ED1 9.55%, rgba(63, 150, 220, 0.97901) 60.74%, rgba(137, 250, 236, 0.95) 131.49%) !important;
+
+}
+
 .opencount{
-    font-family: 'Dax Bold';
+    font-family: 'Dax Medium' !important;
    border-radius: 5px;
    margin-bottom: 10px;
-    background-color: linear-gradient(166.72deg, #0A4ED1 9.55%, rgba(63, 150, 220, 0.97901) 60.74%, rgba(137, 250, 236, 0.95) 131.49%);
+    background: linear-gradient(166.72deg, #0A4ED1 9.55%, rgba(63, 150, 220, 0.97901) 60.74%, rgba(137, 250, 236, 0.95) 131.49%) !important;
 }
 
 .opencount:hover{
@@ -147,4 +158,69 @@ footer p{
     color: #fff !important;
     --bs-modal-width: 340px;
    
+}
+
+.bg-darks{
+    background-color: var(--bg-color);
+    color: #fff !important;
+}
+
+
+.bg-darks img{
+
+    width: 150px;
+    height: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p.card-text{
+    padding: 0;
+    margin: 0;  
+}
+
+div.saldo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 8px;
+    color: #000;
+    border-radius: 6px;
+    
+}
+
+.saldo p{
+    padding: 8px 16px;
+    margin: 0;
+}
+
+div.conta-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 8px;
+    color: #fff;
+    border-radius: 6px;
+    
+}
+
+div.conta-info p{
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.e-date p{
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+
 }
