@@ -7,6 +7,7 @@ use App\Entity\Conta;
 use App\Form\ContaFormType;
 use App\Form\RegistrationFormType;
 use App\Repository\ContaRepository;
+use App\Repository\UserRepository;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -29,24 +30,36 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, ContaRepository $contaRepository): Response
+    public function register(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, ContaRepository $contaRepository): Response
     {
         $user_loged = $this->getUser();
+        
 
        if ($user_loged){
-        return $this->redirectToRoute('app_login');
+        $us = $userRepository->findOneBy(['email' => $user_loged->getUserIdentifier()]);
+        return $this->redirectToRoute('app_conta_criar', ['user' =>$us->getId() ]);
+
         
        }
 
         $user = new User();
+        
         $form = $this->createForm(
             RegistrationFormType::class, $user, 
             
         );
+
         $form->handleRequest($request);
 
+        
         if ($form->isSubmitted() && $form->isValid()) {
+
             // encode the plain password
+
+            #if exist user
+            
+        
+
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
@@ -55,30 +68,47 @@ class RegistrationController extends AbstractController
             );
             $user->setRoles(['ROLE_CLIENT']);
 
+            $cpf = $form->get('cpf')->getData();
+
+            $existUser = $userRepository->findOneBy(['cpf' => $cpf]);
+            
+            if ($existUser){
+                $user = $existUser;
+                $contaExistente = $contaRepository->findOneBy(['usuario' => $existUser->getId(),'active' => true]);
+                
+            }else{
+                $contaExistente = false;
+            }
+
+
             
 
+            if ($contaExistente){
+                return $this->redirectToRoute('app_conta_criar', ['user' => $existUser->getId()]);
+            }
+           
             $entityManager->persist($user);
             
-
 
             $agencia = $form->get('conta')->getData();
            # dd($agencia);
             $conta = new Conta();
-            $conta->setUsuario($user);
+            if ($existUser){
+                $conta->setUsuario($existUser);
+            }else{
+                $conta->setUsuario($user);
+            }
+            
             $conta->setSaldo(0);
             $conta->setNumero(rand(100000, 999999));
             $conta->setAgencia($agencia->getAgencia());
             $conta->setTipo($agencia->getTipo());
 
+          
 
-            $contaExistente = $contaRepository->findOneBy(['usuario' => $user->getId(),'active' => true]);
-
-            if ($contaExistente){
-                $conta->setActive(true);
-                
-            }else{
-                $conta->setActive(false);
-            }
+            
+            $conta->setActive(false);
+            
             
 
             $entityManager->persist($conta);

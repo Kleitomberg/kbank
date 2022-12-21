@@ -136,6 +136,30 @@ class Conta
         return $this;
     }
 
+    #debitar
+    public function debitar(float $valor): self
+    {
+        $this->saldo -= $valor;
+
+        return $this;
+    }
+
+    #creditar
+    public function creditar(float $valor): self
+    {
+        $this->saldo += $valor;
+
+        return $this;
+    }
+    #transferir
+    public function transferir(float $valor, Conta $conta): self
+    {
+        $this->debitar($valor);
+        $conta->creditar($valor);
+
+        return $this;
+    }
+
     public function removeTransacao(Transacao $transacao): self
     {
         if ($this->transacaos->removeElement($transacao)) {

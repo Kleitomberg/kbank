@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Conta;
 use App\Entity\Transacao;
+use App\Entity\User;
+use App\Form\ContaFormType;
 use App\Repository\AgenciaRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ContaRepository;
@@ -21,6 +24,39 @@ class ContaController extends AbstractController
             'controller_name' => 'ContaController',
         ]);
     }
+
+    #criar
+
+    #[Route('/conta/criar/{user}', name: 'app_conta_criar')]
+    public function criar(Request $request, User $user, ContaRepository $contaRepository, AgenciaRepository $agenciaRepository, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(ContaFormType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $conta = $form->getData();
+            $conta->setNumero(rand(100000, 999999));
+            $conta->setUsuario($user);
+            $conta->setSaldo(0);
+            $conta->setActive(true);
+
+            $entityManager->persist($conta);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Conta criada com sucesso!');
+            return $this->redirectToRoute('app_cliente', ['id' => $user->getId()]);
+        }
+
+        
+
+        return $this->render('conta/novaConta.twig', [
+            'controller_name' => 'ContaController',
+            'contaForm' => $form->createView(),
+            
+        ]);
+    }
+
 
     #deposito
 
@@ -55,6 +91,7 @@ class ContaController extends AbstractController
                 $this->addFlash('error', 'Conta não encontrada!');
                 return $this->redirectToRoute('app_index');
             }
+            
             
            
             $conta->setSaldo($conta->getSaldo() + $request->request->get('valor'));

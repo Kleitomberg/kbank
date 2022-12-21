@@ -16,7 +16,13 @@ class ClienteController extends AbstractController
 {
     #[Route('/cliente/{id}', name: 'app_cliente')]
     public function index(User $user, ContaRepository $contaRepository): Response
-    {
+    {   
+        $usuario = $this->getUser();
+
+        if ($usuario->getUserIdentifier() != $user->getEmail()) {
+            $this->addFlash('error', 'Você não tem permissão para acessar essa página!');
+            return $this->redirectToRoute('app_index');
+        }
         $contas = $contaRepository->findBy(['usuario' => $user->getId(), 'active' => true]);
         
         return $this->render('cliente/index.html.twig', [
@@ -56,7 +62,7 @@ class ClienteController extends AbstractController
                 
             }
             else{
-                $conta->setSaldo($conta->getSaldo() + $request->request->get('valor'));
+                $conta->creditar($valor);
 
             }
             $entityManager->persist($conta);
@@ -96,8 +102,8 @@ class ClienteController extends AbstractController
                 $this->addFlash('error', 'Saldo insuficiente!');
             }
             else{
-                $minhaconta->setSaldo($minhaconta->getSaldo() - $valor);
-                $contaDestino->setSaldo($contaDestino->getSaldo() + $valor);
+                
+                $minhaconta->transferir($valor, $contaDestino);
                 
                 $entityManager->persist($minhaconta);
                 $entityManager->persist($contaDestino);
@@ -135,7 +141,8 @@ class ClienteController extends AbstractController
                 $this->addFlash('error', 'Saldo insuficiente!');
             }
             else{
-                $minhaconta->setSaldo($minhaconta->getSaldo() - $valor);
+
+                $minhaconta->debitar($valor);
                 
                 $entityManager->persist($minhaconta);
 
