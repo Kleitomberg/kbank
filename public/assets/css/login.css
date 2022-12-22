@@ -1,8 +1,18 @@
 
-body, html{
+body{
     background: linear-gradient(166.72deg, #0A4ED1 9.55%, rgba(63, 150, 220, 0.97901) 60.74%, rgba(137, 250, 236, 0.95) 131.49%);
-    height: 100vh;
+    height: 100vh !important;
 
+}
+
+*{
+    
+    margin: 0;
+    padding: 0;
+    text-decoration: none !important;
+    list-style: none;
+    box-sizing: border-box;
+    
 }
 
 
@@ -12,8 +22,10 @@ footer{
     padding: 20px;
     text-align: center;
     margin-top: 20px;
-
-    margin-bottom: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    
 }
 
 .logokb{
@@ -32,7 +44,8 @@ div.login, div.form-agencia{
     padding: 20px;
     margin: auto;
     width: 400px;
-    margin-top: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 
 }
 

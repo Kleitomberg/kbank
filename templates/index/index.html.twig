@@ -14,7 +14,8 @@
     {% endif %}
 
     {% if is_granted('ROLE_GERENTE') and not is_granted('ROLE_ADMIN') %}
-    <a class="btn-painel btn btn-primary" href="">Painel do Gerente</a>
+    <a class="btn-painel btn btn-primary" href="{{path('app_gerente', {gerente:app.user.id})}}">Painel do Gerente</a>
+    
     {% endif %}
 
     {% if is_granted('ROLE_CLIENT') and not is_granted('ROLE_ADMIN') %}

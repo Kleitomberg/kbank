@@ -86,6 +86,9 @@ class AdminController extends AbstractController
             $user->setNome($request->request->get('nome'));
             $user->setCpf($request->request->get('cpf'));
             $user->setCelular($request->request->get('celular'));
+            $senha = $request->request->get('password');
+            $user->setPassword(
+            $userPasswordHasher->hashPassword($user,$senha));
             
             $gerente->setNome($request->request->get('nome'));
 

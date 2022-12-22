@@ -1,0 +1,35 @@
+<h3 class="text-light mt-5 mb-5">
+    Transações
+
+    {% if transacoes <= 0 %}
+        <span class="badge badge-danger">Sem transações</span>
+    {% endif %}
+
+    {%for t in transacoes%}
+        <div class="card mb-3">
+            <div class="card-body text-dark">
+                <h5 class="card-title">Transação {{t.id}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Valor: R$ {{t.valor}}</h6>
+                <p class="card-text">Data: {{t.data|date('d/m/y')}}</p>
+                <p class="card-text">Descrição: {{t.descricao}}
+                {% if t.descricao == 'Transferência' %}
+                                da conta {{t.remetente.usuario}} para a conta {{t.destinatario.usuario}}
+
+                {% endif %}
+
+                {% if t.descricao == 'Depósito' or t.descricao == 'deposito' %}
+                                na conta {{t.destinatario.usuario}}
+
+                {% endif %}
+
+                {% if t.descricao == 'Saque' %}
+                                da conta {{t.destinatario.usuario}}
+
+                {% endif %}
+
+                </p>
+            </div>
+        </div>
+    {%endfor%}
+
+</h3>

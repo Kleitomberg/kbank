@@ -1,0 +1,29 @@
+<h3 class="text-light mt-5 mb-5">
+    Clientes
+   </h3>
+   {%if not clientes %}
+    <p>Nenhum cliente cadastrado</p>
+    {%endif%}
+    <div class="row">
+    {%for cliente in clientes %}
+    <div class="col-md-4">
+    <div class="card">
+        <div class="card-body d-flex justify-content-between">
+            
+            <div>
+                <h5 class="card-title">
+                    {{cliente.nome}}
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">CPF: {{cliente.cpf}}</h6>
+            </div>
+            
+            <div>
+                <a href="" class="btn btn-primary">Atualizar cliente</a>
+
+            </div>
+            
+        </div>
+    </div>
+    </div>
+    {%endfor%}
+</div>

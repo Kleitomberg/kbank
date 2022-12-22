@@ -1,0 +1,79 @@
+ <h3 class="text-light mt-5 mb-5">
+        Contas ativas
+    </h3>
+
+    <div class="row">
+        {% if contas|length == 0 %}
+        <p>Nenhuma conta ativa, aguarde a aprovação do gerente!</p>
+        {%endif%}
+    {% for conta in contas %}
+    {% if conta.active == 1%}
+    <div class="col-md-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+            <h6 class="card-title mb-2 text-muted">{{ conta.tipo }}</h6>
+            <h5 class="card-title
+            {% if conta.saldo < 0 %}
+            text-danger
+            {% else %}
+            text-success
+            {% endif %}
+            ">R$ {{ conta.saldo }}</h5>
+        </div>
+            <p class="card-text text-dark">Agencia: {{ conta.agencia }}</p>
+            <p class="card-text text-dark">Conta: {{ conta.numero }}</p>
+
+            <p class="card-text text-dark">Cliente: {{conta.usuario}}</p>
+
+            <div class="text-end">
+                <a href="{{ path('app_cliente_conta', {id: app.user.id, conta: conta.id }) }}" class="btn btn-primary">Acessar conta ></a>
+
+        </div>
+        </div>
+    </div>
+</div>
+{% endif %} 
+    {% endfor %}
+</div>
+<h3 class="text-light mt-5">
+    Contas para aprovação
+</h3>
+<div class="row mb-3">
+
+{% if contas_inativas == 0 %}
+<p class="text-light">Nenhuma conta para aprovação!</p>
+{%endif%}
+
+{% for conta in contas %}
+{% if conta.active == 0%}
+<div class="col-md-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+            <h6 class="card-title mb-2 text-muted">{{ conta.tipo }}</h6>
+            <div class="text-end">
+                
+                <a href="{{ path('app_conta_aprovar', {conta: conta.id }) }}" class="btn btn-success">Aprovar</a>
+
+            </div>
+           
+        </div>
+            <p class="card-text text-dark">Agencia: {{ conta.agencia }}</p>
+            <p class="card-text text-dark">Conta: {{ conta.numero }}</p>
+            
+
+            <p class="card-text text-dark">Cliente: {{conta.usuario}}</p>
+
+            
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endfor%}
+
+
+
+</div>
+

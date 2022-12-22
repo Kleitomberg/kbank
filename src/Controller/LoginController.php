@@ -27,6 +27,8 @@ class LoginController extends AbstractController
        }
 
 
+
+
         return $this->render('login/index.html.twig', [
             'last_username' => $lastUsername,
             'error'         => $error,
@@ -53,6 +55,10 @@ class LoginController extends AbstractController
         
                     return $this->redirectToRoute('app_cliente', ['id' => $user->getId()]);
                 } 
+                if (in_array('ROLE_GERENTE', $user->getRoles())) {
+                    print_r($user->getRoles());        
+                    return $this->redirectToRoute('app_gerente', ['gerente' => $user->getId()]);
+                }
     
            }
     }

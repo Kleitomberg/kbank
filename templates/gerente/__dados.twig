@@ -1,0 +1,32 @@
+<h3 class="text-light mt-5"> Dados da Agencia </h3>
+
+        <div class="text-light mt-3">
+
+            <p>Codigo: {{ agencia.codigo }}</p>
+            <p>Cidade: {{ agencia.cidade }}</p>
+            <p>Endereço: {{ agencia.rua }}, {{agencia.numero}}, {{agencia.bairro}}</p>
+            <p>Telefone: {{ agencia.telefone }}</p>
+
+            <div class="row container gap-3 mt-5">
+                <div class="card text-dark col-md-2 p-3">
+                    Contas ativas: {{ contas_ativas }}
+                </div>
+                <div class="card text-dark col-md-2 p-3">
+                    Contas inativas: {{ contas_inativas }}
+                </div>
+                <div class="card text-dark col-md-2 p-3">
+                    Clientes: {{ clientes|length }}
+                </div>
+                <div class="card text-dark col-md-2 p-3">
+                    Transações: {{ transacoes|length }}
+                </div>
+
+            </div>
+
+            <div>
+                
+                <a class="mt-5 btn btn-primary" href="">Atualizar Agência</a>
+            </div>
+
+
+        </div>
