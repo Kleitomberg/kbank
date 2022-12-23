@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Painel do Gerente{% endblock %}
+
+{% block body %}
+
+{% include "cliente/__navbar.twig" %}
+
+
+<div class="container">
+
+    <div class="mb-3">
+        <a href="{{ path('app_gerente', {'gerente':app.user.id}) }}" class="btn btn-primary">Voltar</a>
+    </div>
+
+
+    <h3 class="text-light">
+        Atualizar Cliente
+    </h3>
+
+<form action="" method="post">
+    
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="text" class="form-control" id="email" name="email" value="{{ cliente.email }}">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="nome">Nome Completo</label>
+                <input type="text" class="form-control" id="nome" name="nome" value="{{ cliente.nome }}">
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="cpf">CPF</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" value="{{ cliente.cpf }}">
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group
+
+            ">
+                <label for="celular">Celular</label>
+                <input type="text" class="form-control" id="celular" name="celular" value="{{ cliente.celular }}">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group
+
+            ">
+                <label for="password">Senha</label>
+                <input type="password" class="form-control" id="password" name="password" value="{{ cliente.password }}">
+            </div>
+        </div>
+
+      
+
+    </div>
+
+    
+
+    <div class="mt-5 ">
+        <button type="submit" class="btn btn-primary">Salvar alterações</button>
+    </div>
+
+
+</form>
+
+
+
+</div>
+
+
+
+{% endblock %}

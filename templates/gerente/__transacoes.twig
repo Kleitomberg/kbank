@@ -1,19 +1,46 @@
 <h3 class="text-light mt-5 mb-5">
     Transações
+</h3>
 
     {% if transacoes <= 0 %}
         <span class="badge badge-danger">Sem transações</span>
     {% endif %}
 
+    <div class="transacoes">
     {%for t in transacoes%}
-        <div class="card mb-3">
-            <div class="card-body text-dark">
-                <h5 class="card-title">Transação {{t.id}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Valor: R$ {{t.valor}}</h6>
-                <p class="card-text">Data: {{t.data|date('d/m/y')}}</p>
-                <p class="card-text">Descrição: {{t.descricao}}
+        
+               
+                <h6 class="card-subtitle mb-2 text-light">Valor: R$ {{t.valor}}</h6>
+
+                <p class="card-text text-light fst-italic">
+                {% if date(t.data) < date('-1year') %}
+                    Há mais de 1 ano atrás...
+                {% elseif date(t.data) < date('-1month') %}
+                    Há mais de 1 mês atrás...
+                {% elseif date(t.data) < date('-1week') %}
+                    Há mais de 1 semana atrás...
+                {% elseif date(t.data) < date('-1day') %}
+                    Há mais de 1 dia atrás...
+                {% elseif date(t.data) < date('-1hour') %}
+                    Há mais de 1 hora atrás...
+                {% elseif date(t.data) < date('-1minute') %}
+                    Há mais de 1 minuto atrás...
+                {% elseif date(t.data) < date('-1second') %}
+                    Há mais de 1 segundo atrás...
+                {% elseif date(t.data) < date('now') %}
+                    Há menos de 1 segundo atrás...
+                {% else %}
+                </p>           
+               
+                 <p class="card-text text-light fst-italic">{{t.data|date('l, d M Y - H:i:s', 'America/Recife')}}</p>
+                 {% endif %}
+                <p class="card-text text-primary">{{t.descricao}}
                 {% if t.descricao == 'Transferência' %}
+                                {%if t.remetente and t.destinatario%}
                                 da conta {{t.remetente.usuario}} para a conta {{t.destinatario.usuario}}
+                                
+                                
+                                {%endif%}
 
                 {% endif %}
 
@@ -28,8 +55,10 @@
                 {% endif %}
 
                 </p>
-            </div>
-        </div>
+                <hr class="bg-light text-light">
+         
     {%endfor%}
+    </div>
+
 
 </h3>

@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Painel do Gerente{% endblock %}
+
+{% block body %}
+
+{% include "cliente/__navbar.twig" %}
+
+
+<div class="container">
+
+    <div class="mb-3">
+        <a href="{{ path('app_gerente', {'gerente':app.user.id}) }}" class="btn btn-primary">Voltar</a>
+    </div>
+
+
+    <h3 class="text-light">
+        Atualizar Agencia
+    </h3>
+
+<form action="" method="post">
+    
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="codigo">Codigo</label>
+                <input type="text" class="form-control" id="codigo" name="codigo" value="{{ agencia.codigo }}">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="telefone">Telefone</label>
+                <input type="text" class="form-control" id="telefone" name="telefone" value="{{ agencia.telefone }}">
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="cep">Cep</label>
+                <input type="text" class="form-control" id="cep" name="cep" value="{{ agencia.cep }}">
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group
+
+            ">
+                <label for="cidade">Cidade</label>
+                <input type="text" class="form-control" id="cidade" name="cidade" value="{{ agencia.cidade }}">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group  ">
+                <label for="rua">Rua</label>
+                <input type="text" class="form-control" id="rua" name="rua" value="{{ agencia.rua }}">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group
+
+            ">
+                <label for="bairro">Bairro</label>
+                <input type="text" class="form-control" id="bairro" name="bairro" value="{{ agencia.bairro }}">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group
+
+            ">
+                <label for="numero">Numero</label>
+                <input type="text" class="form-control" id="numero" name="numero" value="{{ agencia.numero }}">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group
+
+            ">
+                <label for="estado">Estado</label>
+                <input type="text" class="form-control" id="estado" name="estado" value="{{ agencia.estado }}">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mt-5 ">
+        <button type="submit" class="btn btn-primary">Salvar alterações</button>
+    </div>
+
+
+</form>
+
+
+
+</div>
+
+
+
+{% endblock %}

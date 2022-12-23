@@ -27,7 +27,7 @@
             <p class="card-text text-dark">Cliente: {{conta.usuario}}</p>
 
             <div class="text-end">
-                <a href="{{ path('app_cliente_conta', {id: app.user.id, conta: conta.id }) }}" class="btn btn-primary">Acessar conta ></a>
+                <a href="{{ path('app_conta_acessar_gerente', {gerente: app.user.id, conta: conta.id }) }}" class="btn btn-primary">Acessar conta ></a>
 
         </div>
         </div>

@@ -224,3 +224,43 @@ div.conta-info p{
     font-style: italic;
 
 }
+
+div.transacoes{
+    max-height: 400px;
+    overflow-y: scroll;
+    white-space: nowrap;
+
+   
+
+
+    
+}
+
+div.transacoes::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+  }
+  
+  div.transacoes::-webkit-scrollbar-track {
+    background: var(--bg-color);        /* color of the tracking area */
+  }
+  
+  div.transacoes::-webkit-scrollbar-thumb {
+    background-color: blue;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid var(--bg-color);  /* creates padding around scroll thumb */
+  }
+
+
+body::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+  }
+  
+body::-webkit-scrollbar-track {
+    background: var(--bg-color);        /* color of the tracking area */
+  }
+  
+body::-webkit-scrollbar-thumb {
+    background-color: blue;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid var(--bg-color);  /* creates padding around scroll thumb */
+  }
