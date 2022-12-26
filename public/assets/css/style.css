@@ -225,16 +225,26 @@ div.conta-info p{
 
 }
 
-div.transacoes{
-    max-height: 400px;
+div.transacoes, div.extratos.scroll{
+    max-height: 300px;
     overflow-y: scroll;
-    white-space: nowrap;
-
-   
-
-
-    
+    white-space: nowrap;    
 }
+
+div.extratos.scroll::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+  }
+  
+  div.extratos.scroll::-webkit-scrollbar-track {
+    background: #404040; 
+    border-radius: 20px;       /* color of the tracking area */
+  }
+  
+  div.extratos.scroll::-webkit-scrollbar-thumb {
+    background-color: blue;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    
+  }
 
 div.transacoes::-webkit-scrollbar {
     width: 12px;               /* width of the entire scrollbar */

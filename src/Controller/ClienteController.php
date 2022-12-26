@@ -34,7 +34,9 @@ class ClienteController extends AbstractController
     #[Route('/cliente/{id}/conta/{conta}', name: 'app_cliente_conta')]
     public function conta(User $user, ContaRepository $contaRepository, TransacaoRepository $transacaoRepository, $conta): Response
     {
+
         $conta = $contaRepository->findOneBy(['usuario' => $user->getId(), 'active' => true, 'id' => $conta]);
+
         $transacoes_receive = $transacaoRepository->findBy(['destinatario' => $conta->getId()]);
         $transacoes_send = $transacaoRepository->findBy(['remetente' => $conta->getId()]);
         $transacoes = array_merge($transacoes_receive, $transacoes_send);
@@ -159,6 +161,39 @@ class ClienteController extends AbstractController
             }
             return $this->redirect($request->headers->get('referer'));
         }
-    }            
+    }       
+    
+    #app_cliente_conta_encerrar
+    #[Route('/cliente/{id}/conta/{conta}/encerrar', name: 'app_cliente_conta_encerrar')]
+    public function encerrar(Request $request, $conta, User $user, ContaRepository $contaRepository, TransacaoRepository $transacaoRepository, EntityManagerInterface $entityManager):Response
+    {
+
+        $minhaconta = $contaRepository->findOneBy(['usuario' => $user->getId(), 'active' => true, 'id' => $conta]);
+
+            
+            $minhaconta->setActive(false);
+
+           
+            
+            $saldo = $minhaconta->getSaldo();
+            if ($saldo > 0) {
+                $this->addFlash('error', 'Não é possível encerrar uma conta com saldo positivo!');
+                return $this->redirectToRoute('app_cliente_conta', ['id' => $user->getId(), 'conta' => $minhaconta->getId()]);
+            }
+                
+           
+            $transaocoes = $transacaoRepository->findBy(['remetente' => $minhaconta->getId()]);
+            foreach ($transaocoes as $transacao) {
+                $transacao->setRemetente(null);
+                $entityManager->persist($transacao);
+            }
+            $contaRepository->remove($minhaconta);
+
+            
+            $entityManager->flush();
+            $this->addFlash('success', 'Conta encerrada com sucesso!');
+            return $this->redirectToRoute('app_cliente', ['id' => $user->getId()]);
+    
+    }
     
 }

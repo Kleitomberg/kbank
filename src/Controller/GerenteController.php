@@ -84,7 +84,7 @@ class GerenteController extends AbstractController
         $conta = $contaRepository->find($conta);
         $conta->setActive(true);
         $user = $conta->getUsuario();
-        $user->setRoles(['ROLE_CLIENTE']);
+        $user->setRoles(['ROLE_CLIENT']);
         $user->setIsVerified(true);
 
         $entityManager->persist($user);
@@ -298,6 +298,13 @@ class GerenteController extends AbstractController
         $transacoes_b = $transacaoRepository->findBy(['remetente' => $conta]);
 
         $transacoes = array_merge($transacoes, $transacoes_b);
+
+        #Fazer um codigo que: imprime numeros de 500 a -100 multiplos de 3 e 5.
+        for ($i = 500; $i >= -100; $i--) {
+            if ($i % 3 == 0 && $i % 5 == 0) {
+                echo $i . "<br>";
+            }
+        }
 
         if ($request->isMethod('POST')){
             $valor = $request->request->get('valor');

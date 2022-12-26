@@ -33,7 +33,9 @@ class Conta
     #[ORM\ManyToOne(inversedBy: 'contas')]
     private ?TipoConta $tipo = null;
 
-    #[ORM\OneToMany(mappedBy: 'destinatario', targetEntity: Transacao::class)]
+    #cascade
+    #[ORM\OneToMany(mappedBy: 'destinatario', targetEntity: Transacao::class, cascade: ['remove'])]
+
     private Collection $transacaos;
 
     public function __construct()

@@ -63,8 +63,9 @@
     {% if transacoes is empty %}
         <p class="text-light">Nenhuma transação realizada</p>
     {% endif %}
+    <div class="extratos scroll">
     {% for extrato in transacoes %}
-    <div class="extrato text-light">
+    <div class="extrato text-light ">
 
         <div class="d-flex e-date">
             <p>{{extrato.data|date("d/m/Y")}}</p>             
@@ -76,6 +77,12 @@
         </div>
      </div>
     {% endfor %}
+</div>
+<div class="text-center mb-3 mt-3">
+    <a id="confirm-encerrar-conta"  class="btn btn-danger">
+    Encerrar conta
+    </a>
+</div>
 </main>
 
   <!-- Modal Deposito-->
@@ -160,6 +167,36 @@
         </div>
     </div>
 </div>
+
+<script>
+
+  
+        const btn = document.querySelector('#confirm-encerrar-conta');
+        btn.addEventListener('click', function(event){
+
+            event.preventDefault();
+            
+            swal({
+                title: "Tem certeza?",
+                text: "Você não poderá reverter isso!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                //redirect
+                if (willDelete) {
+                    window.location.href = "{{path('app_cliente_conta_encerrar', {id: app.user.id, conta: conta.id })}}";
+                }
+            });
+
+            if(!response){
+                event.preventDefault();
+            }
+        });
+
+    
+</script>
 
 
 
