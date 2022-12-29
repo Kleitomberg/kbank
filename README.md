@@ -11,7 +11,8 @@
 ## 💻Projeto
 
 O Kbank ou kb bank, foi um projeto desenvolvido como avaliação final da cadeira de PHP da minha especialização em desenvolvimento de software,
-o sistema proposto pelo professor trata-se de uma aplicação Symfony para gerenciamento de agencias de um banco, com algumas simulações de transações por parte de clientes, aberturas de contas e etc.
+O sistema proposto pelo professor trata-se de uma aplicação Symfony para gerenciamento de agências de um banco, com algumas simulações de transações por parte de clientes, aberturas de contas e etc.
+A aplicação possui 3 tipos de usuários (clientes, gerentes e o administrador) estes se relacionam com algumas entidades como conta agências e transações, muitas das funcionalidades são mera simulação, como saque, depósito e etc...
 
 ## ✨Tecnologias
 
