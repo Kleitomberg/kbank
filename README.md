@@ -23,7 +23,7 @@ A aplicação possui 3 tipos de usuários (clientes, gerentes e o administrador)
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-- [PHP](https://reactjs.org)
-- [Symfony](https://www.javascript.com/)
-- [MySQL](https://firebase.google.com/)
+- [PHP](https://www.php.net/)
+- [Symfony](https://symfony.com/)
+- [MySQL](https://www.mysql.com/)
 
