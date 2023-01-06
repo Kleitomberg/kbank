@@ -17,7 +17,11 @@ A aplicação possui 3 tipos de usuários (clientes, gerentes e o administrador)
 
 <div align="center">
 <img  src="https://github.com/Kleitomberg/kbank/blob/main/public/assets/images/Sem%20t%C3%ADtulo.png"/>
+
+[Assista o video](https://youtu.be/Z6QJTd_sO4k)
+
 </div>
+
 
 ## ✨Tecnologias
 
